@@ -7,7 +7,7 @@ public sealed class Node<T>
 
 
 	public T Value { get; set; }
-	private List<Node<T>> Children { get; set; }
+	public List<Node<T>> Children { get; set; }
 
 	public Node(T value)
 	{
