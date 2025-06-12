@@ -18,6 +18,14 @@ public  class Tree<T>{
 		return Root?.Find(value);
 	}
 
+	public Node<T> Max(IComparer<T> comparer)
+	{
+		return Root.Max(comparer);
+	}
+	public Node<T> Min(IComparer<T> comparer)
+	{
+		return Root.Min(comparer);
+	}
 
 	private void Print<T>(Node<T> node, string identation="")
 	{

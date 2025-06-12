@@ -18,7 +18,7 @@ public sealed class Node<T>
 
 	public void AddChild(Node<T> node)=>Children.Add(node);
 
-public Node<T>? Find(T value)
+    public Node<T>? Find(T value)
 	{
 		if (typeof(T) == typeof(string))
 		{
