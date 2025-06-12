@@ -75,6 +75,26 @@ public class BinaryTree<T>
 	{
 		PrintTree(Root, 0);
 	}
+	private void PrintTree(Node<T> root, int space)
+	{
+		int COUNT = 10;  // Distance between levels to adjust the visual representation
+		if (root == null)
+			return;
+
+
+		space += COUNT;
+		PrintTree(root.Right, space); // Print right subtree first, then root, and left subtree last
+
+
+		Console.WriteLine();
+		for (int i = COUNT; i < space; i++)
+			Console.Write(" ");
+		Console.WriteLine(root.Value); // Print the current node after space
+
+
+		PrintTree(root.Left, space); // Recur on the left child
+	}
+
 
 	private void PreOrderTraversal(Node<T> node)
 	{
@@ -97,8 +117,6 @@ public class BinaryTree<T>
 		}
 
 	}
-
-
 	public void PreOrderTraversal()
 	{
 		PreOrderTraversal(Root);
@@ -106,23 +124,77 @@ public class BinaryTree<T>
 		Console.WriteLine(" ");
 	}
 
-	private void PrintTree(Node<T> root, int space)
+
+	private void PostOrderTraversal(Node<T> node)
 	{
-		int COUNT = 10;  // Distance between levels to adjust the visual representation
-		if (root == null)
-			return;
+		/*
+		 *  the left subtree
+		 *  the right subtree
+		 *  node
+		*/
 
 
-		space += COUNT;
-		PrintTree(root.Right, space); // Print right subtree first, then root, and left subtree last
+		if (node != null)
+		{
+			PostOrderTraversal(node.Left);
+			PostOrderTraversal(node.Right);
+			Console.Write($"{node.Value} ,");
+		}
 
-
-		Console.WriteLine();
-		for (int i = COUNT; i < space; i++)
-			Console.Write(" ");
-		Console.WriteLine(root.Value); // Print the current node after space
-
-
-		PrintTree(root.Left, space); // Recur on the left child
 	}
+	public void PostOrderTraversal()
+	{
+		PostOrderTraversal(Root);
+		Console.Write("\b\b  \b\b"); // erase the last comma and space		
+		Console.WriteLine(" ");
+	}
+
+
+	private void InOrderTraversal(Node<T> node)
+	{
+		/*
+		 *  the left subtree
+		 *  the right subtree
+		 *  node
+		*/
+
+
+		if (node != null)
+		{
+			InOrderTraversal(node.Left);
+			Console.Write($"{node.Value} ,");
+			InOrderTraversal(node.Right);
+		}
+
+	}
+	public void InOrderTraversal()
+	{
+		InOrderTraversal(Root);
+		Console.Write("\b\b  \b\b"); // erase the last comma and space		
+		Console.WriteLine(" ");
+	}
+
+	public void LevelOrderTraversal_BFS()
+	{
+		if (Root == null) return;
+
+
+		var queue = new Queue<Node<T>>();
+		queue.Enqueue(Root);
+
+		while (queue.Count > 0)
+		{
+			var current = queue.Dequeue();
+
+			Console.Write(current.Value + " ");	
+
+			if(current.Left != null)
+				queue.Enqueue(current.Left);
+
+			if(current.Right != null)
+				queue.Enqueue(current.Right);
+
+		}
+	}
+
 }
