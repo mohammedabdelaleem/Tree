@@ -1,40 +1,40 @@
 ﻿
-
-
 using GeneralTreeDS;
 
-var family = new Tree<string>("Abd El-Daym");
-
-var grand_grand_pa = new Node<string>("Mohammed");
-family.Root.AddChild(grand_grand_pa);
-
-var grand_pa = new Node<string>("Mostafa");
-
-grand_grand_pa.AddChild(grand_pa);
-grand_grand_pa.AddChild(new Node<string>("El-Shat"));
-grand_grand_pa.AddChild(new Node<string>("Hafez"));
-grand_grand_pa.AddChild(new Node<string>("Ataa"));
-grand_grand_pa.AddChild(new Node<string>("Koukab"));
-grand_grand_pa.AddChild(new Node<string>("El-Set"));
-
-var pa = new Node<string>("Abd El-Aleem");
-var uncle = new Node<string>("Mohammed");
-
-grand_pa.AddChild(pa);
-grand_pa.AddChild(uncle);
-grand_pa.AddChild(new Node<string>("Sasa1"));
-grand_pa.AddChild(new Node<string>("Helmy"));
-grand_pa.AddChild(new Node<string>("Rsha"));
-
-pa.AddChild(new Node<string>("Mohammed"));
-pa.AddChild(new Node<string>("Ahmed"));
-pa.AddChild(new Node<string>("Sasa2"));
-
-uncle.AddChild(new Node<string>("Wafaaaa"));
-uncle.AddChild(new Node<string>("Sasa3"));
-uncle.AddChild(new Node<string>("Helmy"));
-uncle.AddChild(new Node<string>("Ahmed2"));
+// Creating the tree
+var CompanyTree = new Tree<string>("CEO");
+var Finance = new Node<string>("CFO");
+var Tech = new Node<string>("CTO");
+var Marketing = new Node<string>("CMO");
 
 
-family.Root.PrintTree();
+// Adding departments to the CEO node
+CompanyTree.Root.AddChild(Finance);
+CompanyTree.Root.AddChild(Tech);
+CompanyTree.Root.AddChild(Marketing);
+
+
+// Adding employees to departments
+Finance.AddChild(new Node<string>("Accountant"));
+Tech.AddChild(new Node<string>("Developer"));
+Tech.AddChild(new Node<string>("UX Designer"));
+Marketing.AddChild(new Node<string>("Social Media Manager"));
+
+// Printing the tree
+CompanyTree.Print();
+
+
+Console.WriteLine("\nFinding Developer...");
+if (CompanyTree.Find("Developer".ToLower()) == null)
+	Console.WriteLine("Not Found :-(");
+else
+	Console.WriteLine("Found :-)");
+
+Console.WriteLine("\nFinding DBA...");
+if (CompanyTree.Find("DBA") == null)
+	Console.WriteLine("Not Found :-(");
+else
+	Console.WriteLine("Found :-)");
+
+Console.ReadKey();
 

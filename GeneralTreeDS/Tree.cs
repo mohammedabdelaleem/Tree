@@ -8,4 +8,26 @@ public  class Tree<T>{
 		Root = new Node<T>(rootValue);
 	}
 
+	public void Print()
+	{
+		Print(Root); 
+	}
+
+	public Node<T>? Find(T value)
+	{
+		return Root?.Find(value);
+	}
+
+
+	private void Print<T>(Node<T> node, string identation="")
+	{
+		Console.WriteLine($"{identation}{node.Value}");
+
+		foreach (var child in node.Children)
+		{
+			Print(child, identation+"--");
+		}
+	}
+
+
 }
