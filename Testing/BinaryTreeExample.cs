@@ -15,7 +15,14 @@ public class BinaryTreeExample
 		binaryTree.Insert(9);
 		binaryTree.Insert(11);
 
+		
 		binaryTree.PrintTree();
+
+		Console.WriteLine("\n=========================\n");
+		Console.WriteLine("PreOrder Traversal (Current - Left SubTree - Right SubTree) :>");
+		binaryTree.PreOrderTraversal();
+
+
 
 		Console.ReadKey();
 	}
